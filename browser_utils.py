@@ -44,6 +44,10 @@ class BrowserManager:
             os.getenv("BROWSER_HEADLESS", "True").lower() == "true"
         )  # 生产环境使用无头模式
 
+        # Linux 系统特殊处理
+        if sys.platform == "linux":
+            co.set_argument("--no-sandbox")
+
         # Mac 系统特殊处理
         if sys.platform == "darwin":
             co.set_argument("--no-sandbox")
